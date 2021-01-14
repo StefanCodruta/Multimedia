@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+       table{
+           font: bold 30px Arial;
+           border:double;
+           border-collapse: collapse;
+           cursor: pointer;
+       }
+       td{
+           border: 1px solid black;
+           width: 40px;
+           height: 40px;
+           text-align: center;
+       }
+       .liber{
+           background-color:aquamarine;
+       }
+       .ocupat{
+           background-color: brown;
+       }
+    </style>
+    <script type="text/javascript">
+        const val_x = 'x', val_o = '0';
+        let elementDepozitionat = val_x;
+        function getCelula(pozitie) {
+            let tbody = document.querySelector('tbody');
+            return tbody.children[pozitie.x].children[pozitie.y];
+        }
+
+
+        function getValoare(pozitie) {
+            return getCelula(pozitie).innerText;
+        }
+
+
+        function esteLiber(pozitie) {
+            return getValoare(pozitie) !== val_x && getValoare(pozitie) !== val_O;
+        }
+
+
+        function determinaPozitie(element) {
+            let tbody = document.querySelector('tbody');
+            for (let y = 0; y < tbdoy.children.length; y++) {
+                let rand = tbody.children[y];
+                for (let x = 0; x < tbody.children.length; x++) {
+                    let celula = rand.children[x];
+
+                    if (celula === element) {
+                        return {x:x, y:y}
+                    }
+                }
+            }
+            return null;
+        }
+
+
+        function mutare(e) {
+            let pozitie = determinaPozitie(e.target);
+            if (pozitie === null) {
+                return;
+            } if (!esteLiber(pozitie)) {
+                alert('celula ocupata');
+                return;
+            }
+            let celula = getCelula(pozitie);
+            celula.innerText = elementDepozitionat;
+
+            celula.classList.remove('liber');
+        }
+
+
+        function aplicatie() {
+          
+           
+        }
+
+        document.addEventListener('DOMContentLoaded', aplicatie);
+    </script>
+</head>
+<table>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+    </table>
+</body>
+</html>

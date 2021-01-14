@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        .grafic{
+            background-color:gainsboro;
+            border: 2px solid gray;
+            border-radius: 6px;
+            padding: 8px;
+            margin: 30px;
+        }
+        .bara {
+            background-color: chocolate;
+            border: 2px solid gray;
+            border-radius: 3px;
+            padding: 3px;
+            margin: 4px;
+
+            font-family: Tahoma;
+            font-weight: bold;
+            text-align: right;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function desenareGrafic(valori) {
+            let grafic = document.querySelector('.grafic');
+            grafic.innerHTML = '';
+
+            let maxim = Math.max.apply(null, valori);
+            for (let valoare of valori) {
+                let bara = document.createElement('div');
+                bara.classList.add('bara');
+                bara.style.width = (valoare * 100.0 / maxim) + '%';
+                bara.innerText = valoare.toString();
+
+                grafic.append(bara);
+            }
+        }
+
+        function aplicatie() {
+            let buton = document.querySelector('#btnGrafic');
+            buton.addEventListener('click', () => {
+                let textbox = document.querySelector('#txtValori');
+                let valori = textbox.value.split(',').map(item => parseInt(item, 10));
+                desenareGrafic(valori);
+            });
+        }
+
+        addEventListener('DOMContentLoaded', aplicatie);
+    </script>
+</head>
+<body>
+    <label for="txtValori">Valori: </label>
+    <input id="txtValori" value="5,2,7,2,9,8,4,3" />
+    <input type="button" id="btnGrafic" value="Grafic" />
+
+    <div class="grafic">
+        <div class="bara" style="width: 70%">23</div>
+        <div class="bara" style="width: 80%">25</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+﻿<!--1) Adăugați în documentul HTML:
+- un tabel gol cu două coloane (judet, număr cazuri)
+- un buton Total
+- un element select gol
+2) Scrieți codul JavaScript care la apăsarea pe butonul
+Total să afișeze numărul total de cazuri folosind funcția alert.
+3) Scrieți codul JavaScript care la pornirea paginii să afișeze
+datele în tabel și să populeze elementul select cu lista de județe.
+4) Scrieți codul JavaScript care la selectarea unui județ din listă
+să adauge un paragraf nou în document cu mesajul 'Județul XY -
+numărul total de cazuri NNNN (NN% din cazurile la nivel național)'-->
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript">
+        let date = {
+            "AB": 4163,
+            "AR": 4487,
+            "AG": 6481,
+            "BC": 7371,
+            "BH": 5431,
+            "BN": 2297,
+            "BT": 2720,
+            "BV": 8677,
+            "BR": 3180,
+            "BZ": 3592,
+            "CS": 2297,
+            "CL": 1446,
+            "CJ": 7430,
+            "CT": 4961,
+            "CV": 1950,
+            "DB": 5867,
+            "DJ": 5382,
+            "GL": 5836,
+            "GR": 1674,
+            "GJ": 2663,
+            "HR": 2575,
+            "HD": 3709,
+            "IL": 1907,
+            "IS": 9435,
+            "IF": 5430,
+            "MM": 3587,
+            "MH": 1945,
+            "MS": 4191,
+            "NT": 5474,
+            "OT": 3107,
+            "PH": 8888,
+            "SM": 1416,
+            "SJ": 2092,
+            "SB": 4349,
+            "SV": 8635,
+            "TR": 2735,
+            "TM": 7338,
+            "TL": 1360,
+            "VS": 4571,
+            "VL": 4363,
+            "VN": 3264,
+            "B": 31231
+        };
+
+        let sum = 0;
+
+        function calcTotal() {
+            for (let ceva in date) {
+                sum+=date[`${ceva}`]
+            }
+            return sum;
+        }
+
+        function Total() {
+            sum = calcTotal();
+            alert(sum);
+        }
+
+        function selecteaza(ceva) {
+            console.log(ceva);
+            let div = document.querySelector('div');
+            div.innerHTML = "";
+            let XY = ceva;
+            let NNN = date[`${ceva}`];
+            let NN = NNN / calcTotal();
+
+            let p = document.createElement('p');
+            p.innerText=`judetul ${XY} - numarul total de cazuri ${NNN} (${NN}% din cazuri la nivel nat)`
+
+            document.body.appendChild(p);
+        }
+
+        function aplicatie() {
+            let select = document.querySelector('#select');
+            let table = document.querySelector('#tbody');
+
+            for (let ceva in date) {
+                let option = document.createElement('option');
+                option.innerText = ceva;
+                option.value = ceva;
+
+
+                select.appendChild(option);
+                option.addEventListener('onselect', selecteaza(ceva));
+
+                let rand = document.createElement('tr');
+                let celulaJudet = document.createElement('td');
+                let celulaCazuri = document.createElement('td');
+
+                celulaCazuri.innerText = date[`${ceva}`];
+                celulaJudet.innerText = ceva;
+
+                rand.appendChild(celulaJudet);
+                rand.appendChild(celulaCazuri);
+
+                table.appendChild(rand);
+            }
+
+        }
+        document.addEventListener('DOMContentLoaded', aplicatie);
+
+    </script>
+</head >
+            <body id="tbody">
+                <table>
+                    <thead>
+                        <th>Judet</th>
+                        <th>Nr cazuri</th>
+                    </thead>
+                </table>
+                <input type="button" value="Total" onclick="Total()" />
+                <select id="select">
+
+                </select>
+
+                <div></div>
+            </body>
+</html >

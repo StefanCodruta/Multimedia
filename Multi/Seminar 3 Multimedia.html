@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Agenda telefonica</title>
+    <style type="text/css">
+        body{
+            font-family:Tahoma;
+            font-size:11pt;
+            line-height: 1.2em; /*optional nu trebuie stiut*/ 
+
+            margin: 0px;
+            padding: 12px;
+        }
+
+        h1{
+            background-color: navy;
+            color: white;
+
+            padding: 16px;
+            margin: -12px;
+            margin-bottom: 20px;
+        }
+
+        table{
+            border: 1px solid gray;
+            border-collapse: collapse;
+
+            float: left;
+            width: 60%;
+        }
+
+        caption {
+            border: 1px solid gray;
+            border-bottom: none;
+            padding: 8px 16px;
+            font-weight: bold;
+
+            background-color:#E0E0E0
+        }
+
+        td, th {
+            border-bottom: 1px solid gray;
+            padding: 8px 16px;
+        }
+
+        th{
+            background-color: #EEEEEE;
+            text-align: left; /*optional*/
+        }
+
+        tfoot td {
+            font-weight: bold;
+            background-color: #EEEEEE;
+        }
+
+        form {
+            border: 1px solid gray;
+            border-radius: 5px; /*optional*/
+            background-color: #EEEEEE;
+            padding: 16px;
+
+            float: right;
+            width: 30%;
+            /*overflow: scroll;*/ /*optional*/
+        }
+
+        label{
+            display: block;
+            float: left;
+            clear: right;
+            width: 40%;
+        }
+
+        input{
+            display: block;
+            float: right;
+            width: 50%;
+
+            margin: 4px;
+        }
+
+        input[type='button']{
+            font-weight: bold;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Agenda telefonica</h1>
+
+    <table>
+        <caption>Lista persoane</caption>
+        <thead>
+            <tr>
+                <th>Nume</th>
+                <th>Prenume</th>
+                <th>Telefon</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Popescu</td>
+                <td>Ion</td>
+                <td>0123456789</td>
+            </tr>
+            <tr>
+                <td>Vasilescu</td>
+                <td>Maria</td>
+                <td>0123456789</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Numar persoane: 2</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <form>
+        <label for="nume">Nume:</label>
+        <input type="text" id="nume" />
+
+        <label for="prenume">Prenume:</label>
+        <input type="text" id="prenume" />
+
+        <label for="telefon">Telefon:</label>
+        <input type="text" id="telefon" />
+
+        <input type="button" value="Adauga"/>
+    </form>
+</body>
+</html>

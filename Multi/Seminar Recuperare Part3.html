@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+
+
+        table {
+            font: bold 30px Arial;
+            border: 2px solid black;
+            border-collapse: collapse;
+            cursor: pointer;
+        }
+
+        td {
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+        }
+
+        .liber{
+            background-color: honeydew;
+        }
+
+        .ocupat {
+            background-color: lightsalmon;
+        }
+    </style>
+    <script type="text/javascript">
+
+        const VAL_X = 'X', VAL_O = '0';
+        let elementDePozitionat = VAL_X;
+
+        function getCelula(pozitie) {
+            let tbody = document.querySelector('tbody');
+
+            return tbody.children[pozitie.y].children[pozitie.x];
+        }
+
+        function getValoare(pozitie) {
+            return getCelula(pozitie).innerText;
+        }
+
+        function esteLiber(pozitie) {
+            return getValoare(pozitie) !== VAL_X && getValoare(pozitie) !== VAL_O;
+        }
+
+        function determinaPozitia(element) {
+
+            let tbody = document.querySelector('tbody');
+
+            for (let y = 0; y < tbody.children.length; y++) {
+                let rand = tbody.children[y];
+
+                for (let x = 0; x < rand.children.length; x++) {
+                    let celula = rand.children[x];
+
+                    if (celula === element) {
+                        return { x: x, y: y }
+                    }
+                }
+            }
+            return null;
+        }
+
+        function mutare(e) {
+            let pozitie = determinaPozitia(e.target);
+
+            if (pozitie === null) {
+                return;
+            }
+
+            if (!esteLiber(pozitie)) {
+                alert('Celula ocupata!')
+                return;
+            }
+            let celula = getCelula(pozitie);
+            celula.innerText = elementDePozitionat;
+
+            //celula.classList.remove('liber');
+            //celula.classList.remove('ocupat');
+
+            celula.dispatchEvent(new Event('mouseleave'));
+            celula.dispatchEvent(new Event('mouseenter'));
+
+            if (elementDePozitionat === VAL_X) {
+                elementDePozitionat = VAL_O;
+            }
+            else {
+                elementDePozitionat = VAL_X;
+            }
+        }
+
+        function aplicatie() {
+            let table = document.querySelector('table');
+            table.addEventListener('click', mutare);
+
+            for (let celula of document.querySelectorAll('td')) {
+                celula.addEventListener('mouseenter', e => {
+                    let pozitie = determinaPozitia(celula);
+                    if (esteLiber(pozitie)) {
+                        celula.classList.add('liber');
+                    }
+                    else {
+                        celula.classList.add('ocupat');
+                    }                    
+                });
+                celula.addEventListener('mouseleave', e => {
+                    celula.classList.remove('liber');
+                    celula.classList.remove('ocupat');
+                });
+            }
+        }
+
+        addEventListener('DOMContentLoaded', aplicatie);
+    </script>
+</head>
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Prima pagina</title>
+</head>
+<body>
+
+    <form action="http://test.com" method="post">
+        <!--INPUT: type, name, value-->
+
+        <input type="text" name="nume" value="Ion">
+
+        <input type="checkbox" id="chk1" name="chk" value="oValoare" />
+        <label for="chk1">Checkbox</label>
+
+        <input type="radio" id="rx1" name="radio1" value="r1" />
+        <label for="rx1">DA</label>
+        <input type="radio" id="rx2" name="radio1" value="r2" checked />
+        <label for="rx2">NU</label>
+
+        <input type="radio" name="radio2" value="r1" />
+        <input type="radio" name="radio2" value="r2" />
+        <input type="radio" name="radio2" value="r3" checked />
+
+        <input type="hidden" name="ascuns" value="secret" />
+
+        <select name="sel">
+            <option value="val1">Valoare 1</option>
+            <option value="val2">Valoare 2</option>
+            <option value="val3">Valoare 3</option>
+        </select>
+
+        <input type="button" value="Test" />
+
+        <input type="reset" value="Reset" />
+
+        <input type="submit" value="Trimite" />
+    </form>
+
+    <table border="1">
+        <caption>Titlu Tabel</caption>
+        <thead>
+            <tr>
+                <th></th>
+                <th>C1</th>
+                <th>C2</th>
+                <th colspan="2">C3</th>
+            </tr> <!--liniile le numar aici pe nivelul 2 si am 4 linii; pt coloane se face un maxim-->
+        </thead>
+        <tbody>
+            <tr>
+                <th>L1</th>
+                <td>A</td>
+                <td rowspan="2">B</td>
+                <td>C</td>
+                <td rowspan="2">D</td>
+            </tr>
+            <tr>
+                <th>L2</th>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>F1</td>
+                <td>F2</td>
+                <td>F3</td>
+                <td>F4</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <br />
+    <br />
+    A&lt;B
+    <br />
+    &quot;Maria&amp;Ion&quot;
+    <pre>
+    Ana
+    are
+    mere.
+    </pre>
+
+    <h1>Cap 1:...</h1>
+    <h2>Cap 1.1:...</h2>
+
+    <h2>Cap1.2:...</h2>
+    <h2>Cap1.3:...</h2>
+    <h1>Cap2:...</h1>
+    <h2>Cap2.1:...</h2>
+    <h2>Cap2.2:...</h2>
+    <h2>Cap2.3:...</h2>
+
+    <p>
+        Un <strong>paragraf</strong> <em>de text.</em>
+    </p> <!--5 fii-->
+
+    <p>
+        Un paragraf de text.<br>
+        Un paragraf de text. Un paragraf de text. Un paragraf de text.
+    </p>
+
+    <ul>
+        <li>paine</li>
+        <li>lapte</li>
+        <li>oua</li>
+        <li>unt</li>
+    </ul>
+
+    <ol start="13" type="A">
+        <li>paine</li>
+        <li>lapte</li>
+        <li>oua</li>
+        <li>unt</li>
+    </ol>
+
+</body>
+</html>

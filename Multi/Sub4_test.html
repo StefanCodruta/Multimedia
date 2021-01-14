@@ -1,0 +1,53 @@
+﻿<!--1) Să se construiască un un document HTML care conține:
+două elemente input de tip textbox cu id-urile nume și cod;
+un element input de tip button;
+un element gol de tip listă cu id-ul persoane.
+2) Scrieți o funcție JavaScript care să primească ca parametru
+un obiect (câmpuri nume și cod) și să adauge datele în listă în
+formatul "Cod - Nume". Apelați funcția cu un obiect de test.
+3) Scrieți codul JavaScript care face ca la apăsarea butonului să
+se adauge în listă codul și numele citite din controalele de tip
+textbox.
+4) Scrieți codul JavaScript care face ca la click pe un element
+din listă culoarea acestuia să devină roșie.-->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript">
+        function adauga() {
+            let lista = document.querySelector('#persoana');
+            let nume = document.getElementsByName('nume')[0].value;
+            let cod = document.getElementsByName('cod')[0].value;
+
+            let obj = document.createElement('li');
+            console.log(obj);
+            obj.innerText = `${nume} - ${cod}`;
+            obj.setAttribute('id', `${nume}`);
+            obj.setAttribute('onclick', 'coloreaza(id)');
+
+            lista.appendChild(obj);
+        }
+
+        function coloreaza(id) {
+            let obj = document.querySelector(`#${id}`);
+            obj.setAttribute('style', 'color:red');
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label for="nume">Nume</label>
+        <input type="text" name="nume" />
+        <label for="Cod">Cod</label>
+        <input type="text" name="cod" />
+        <input type="button" value="Adauga" onclick="adauga()" />
+    </form>
+    <ol id="persoana">
+        <li>fvdfvdf</li>
+    </ol>
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Video2</title>
+    <script type="text/javascript">
+
+
+        //1. Model
+        let video, videoMic;
+        let canvas, context, W, H;
+
+        let px = 10, py = 10, pw = 160, ph = 90, h = 30;
+        let w;
+
+        let desenareControale = false;
+
+        let mx = 0, my = 0;
+
+        //2. Desenare
+        function desenare() {
+
+            context.drawImage(video, 0, 0);
+
+            if (desenareControale) {
+                context.drawImage(videoMic, 0, 0, W, H, px, py, pw, ph);
+
+                context.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                context.fillRect(0, H - h, W, h);
+
+                context.fillStyle = 'rgba(255, 0, 0, 0.3)';
+                w = video.currentTime * W / video.duration;
+                context.fillRect(0, H - h, w, h);
+
+                context.fillStyle = 'white';
+                context.font = '14pt Arial';
+                context.textAlign = 'left'
+                context.textBaseline = 'middle';
+                context.fillText(video.src, 5, H - h / 2);
+
+                context.textAlign = 'right';
+                context.fillText(Math.round(video.currentTime), W - 10, H - h / 2);
+            }
+            requestAnimationFrame(desenare);
+        }
+
+
+        function aplicatie() {
+            video = document.querySelector('video');
+
+            videoMic = document.createElement('video');
+            videoMic.src = 'media/town.mp4';
+            videoMic.loop = true;
+            videoMic.load();
+
+            canvas = document.querySelector('canvas');
+            context = canvas.getContext('2d');
+            W = canvas.width;
+            H = canvas.height;
+
+            canvas.addEventListener('mouseenter', e => desenareControale = true);
+            canvas.addEventListener('mouseleave', e => desenareControale = false);
+
+            canvas.addEventListener('mousemove', e => {
+                mx = e.x - canvas.getBoundingClientRect().x;
+                my = e.y - canvas.getBoundingClientRect().y;
+                //console.log(mx, my);
+            });
+
+            canvas.addEventListener('mousedown', e => {
+
+                if (px < mx && mx < px + pw && py < my && my < py + ph) {
+                    console.log('interschimb');
+                    let temp = videoMic;
+                    videoMic = video;
+                    video = temp;
+                } else if (my > H - h) {
+                    console.log('pozitionare');
+                    video.currentTime = mx * video.duration / W;
+                } else {
+                    console.log('play / pause');
+                    if (video.paused) {
+                        video.play();
+                        videoMic.play();
+                    } else {
+                        video.pause();
+                        videoMic.pause();
+                    }
+                }
+            });
+
+            desenare();
+
+
+        }
+
+        document.addEventListener('DOMContentLoaded', aplicatie);
+    </script>
+</head>
+<body>
+    <video src="media/village.mp4" controls="controls" loop="loop" style="display:none;"></video>
+    <canvas width="640" height="360" style="border:1px solid red"></canvas>
+</body>
+</html>

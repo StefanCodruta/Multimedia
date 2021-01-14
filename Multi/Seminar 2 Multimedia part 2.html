@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <!-- http://ase.softmentor.ro:81/Home/ExecutaOperatie -->
+    <!-- metode acceptate GET si POST-->
+    <!--
+        operand1 - un numar
+        operand2 - un numar
+        operatie - plus / minus / inmultit / impartit
+        raspunsText - true / false
+    -->
+
+    <form action=" http://ase.softmentor.ro:81/Home/ExecutaOperatie" method="post">
+        <input type="text" name="operand1" value="1" />
+
+        <select name="operatie">
+            <option value="plus">+</option>
+            <option value="minus">-</option>
+        </select>
+
+        <input type="text" name="operand2" value="1" />
+
+        <input type="submit" />
+
+        <input type="radio" id="text" name="raspunsText" value="true" />
+        <label for="text">TEXT</label>
+        <input type="radio" id="html" name="raspunsText" value="false" />
+        <label for="html">HTML</label>
+
+
+    </form>
+
+</body>
+</html>
